@@ -1,18 +1,15 @@
 import { useSelector } from "react-redux";
 import { useGetTasksQuery } from "../../../features/tasks/tasksApi";
 import TaskCard from "../../../components/TaskCard";
-import { useEffect } from "react";
 
 
 const MyTasks = () => {
     const {user: {email}} = useSelector(state => state.auth)
     const {data, isLoading} = useGetTasksQuery(email);
     
-    useEffect(() => {
-        if(isLoading){
-            return <p>Loading...</p>
-        }
-    })
+    if(isLoading){
+        return <p>Loading...</p>
+    }
     
     return (
         <div className="w-5/6 mx-auto">

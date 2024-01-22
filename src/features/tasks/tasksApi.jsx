@@ -15,8 +15,23 @@ const tasksApi = apiSlice.injectEndpoints({
                 url: `/tasks/${email}`
             }),
             providesTags: ["Tasks"]
+        }),
+        deleteTask: builder.mutation({
+            query: (id) => ({
+                url: `/task/${id}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ["Tasks"]
+        }),
+        updateTask: builder.mutation({
+            query: ({id, data}) => ({
+                url: `/task/${id}`,
+                method: "PUT",
+                body: data,
+            }),
+            invalidatesTags: ["Tasks"]
         })
     })
 });
 
-export const {usePostTaskMutation, useGetTasksQuery} = tasksApi;
+export const {usePostTaskMutation, useGetTasksQuery, useDeleteTaskMutation, useUpdateTaskMutation} = tasksApi;

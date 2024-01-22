@@ -68,9 +68,9 @@ const AddTask = () => {
               {...register("priority", { required: "Priority is required." })}
               className="select select-bordered w-[400px]"
             >
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="low">Low</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
             </select>
           </label>
 
