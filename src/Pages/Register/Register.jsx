@@ -41,7 +41,7 @@ const Register = () => {
 
     useEffect(() => {
         if (email) {
-          navigate('/');
+          navigate('/tasks');
         }
       }, [email, navigate]);
 
