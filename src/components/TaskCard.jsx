@@ -2,22 +2,25 @@ import { FaCalendar, FaClock, FaFlag } from "react-icons/fa";
 import PropTypes from 'prop-types';
 import moment from "moment";
 import { useDeleteTaskMutation } from "../features/tasks/tasksApi";
-import toast from "react-hot-toast";
 import { useState } from "react";
 import UpdateTaskModal from "./UpdateTaskModal";
+import CompleteTaskModal from "./CompleteTaskModal";
 
 
 const TaskCard = ({task}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
+  
     const {_id, title, description, priority, date, addDate} = task;
 
     const [deleteTask] = useDeleteTaskMutation();
+    
 
     const handleDeleteTask = (id) => {
       deleteTask(id);
-      toast.success('Task Deleted');
     };
 
+    
 
 
 
@@ -40,7 +43,7 @@ const TaskCard = ({task}) => {
         </div>
         <div className="flex gap-3 justify-end mt-3">
           <label htmlFor={`update-modal-${_id}`} className="btn btn-info btn-sm text-white">Update</label>
-          <button className="btn btn-success btn-sm text-white">Complete</button>
+          <label htmlFor={`complete-modal-${_id}`} className="btn btn-success btn-sm text-white">Complete</label>
           <button onClick={() => handleDeleteTask(_id)} className="btn btn-error btn-sm text-white">Delete</button>
         </div>
 
@@ -50,6 +53,9 @@ const TaskCard = ({task}) => {
         task={task}
         modalId={`update-modal-${task._id}`}
       />
+      <CompleteTaskModal task={task}  isModalOpen={isCompleteModalOpen}
+      setIsModalOpen={setIsCompleteModalOpen} modalId={`complete-modal-${task._id}`}
+      ></CompleteTaskModal>
       </div>
     );
 };

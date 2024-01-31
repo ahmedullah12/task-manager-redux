@@ -30,8 +30,29 @@ const tasksApi = apiSlice.injectEndpoints({
                 body: data,
             }),
             invalidatesTags: ["Tasks"]
-        })
+        }),
+        postCompletedTask: builder.mutation({
+            query: (data) => ({
+                url: `/completedTasks`,
+                method: "POST",
+                body: data,
+            }),
+            invalidatesTags: ["CompletedTasks"],
+        }),
+        completedTasks: builder.query({
+            query: (email) => ({
+                url: `/completedTasks/${email}`,
+            }),
+            providesTags: ["CompletedTasks"],
+        }),
     })
 });
 
-export const {usePostTaskMutation, useGetTasksQuery, useDeleteTaskMutation, useUpdateTaskMutation} = tasksApi;
+export const {
+    usePostTaskMutation,
+    useGetTasksQuery, 
+    useDeleteTaskMutation, 
+    useUpdateTaskMutation, 
+    usePostCompletedTaskMutation,
+    useCompletedTasksQuery,
+} = tasksApi;

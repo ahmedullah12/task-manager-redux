@@ -5,7 +5,7 @@ const apiSlice = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: import.meta.env.VITE_REACT_APP_DEV_URL,
     }),
-    tagTypes: ["Tasks"],
+    tagTypes: ["Tasks", "CompletedTasks"],
     endpoints: (builder) => ({})
 });
 
